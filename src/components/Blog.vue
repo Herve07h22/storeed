@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="section">
         <div class="columns">
             <div class="column is-5">
                 <h1 class="title">About me</h1>
