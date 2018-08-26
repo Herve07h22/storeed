@@ -29,7 +29,7 @@
                             </p>
                         </div>
                         <div class="level-right">
-                            <span class="tag is-rounded is-primary is-medium">startups<button class="delete is-small"></button></span>
+                            <span v-if="filterTag" class="tag is-rounded is-primary is-medium">{{filterTag}}<button class="delete is-small" v-on:click="filterTag=''"></button></span>
                         </div>
                     </div>
                     <table class="table is-narrow is-hoverable is-fullwidth">
@@ -41,7 +41,7 @@
                                 </tr>
                             </thead>
                         <tbody>    
-                            <tr v-for="post in filteredPost">
+                            <tr v-for="post in filteredPost" :key="post.url">
                                 <td >
                                     <span class="is-size-7 has-text-weight-light">{{post.age}}d</span>
                                 </td>
@@ -61,16 +61,16 @@
               <h2 class="title">My reading list</h2>
               <div class="tabs">
                       <ul>
-                        <li id="popular_tab" class="is-active"><a v-on:click="sortedByDate=false">Popular</a></li>
-                        <li id="recent_tab"><a v-on:click="sortedByDate=true">Recent</a></li>
+                        <li id="popular_tab" v-bind:class="{ 'is-active': !sortedByDate }"><a v-on:click="sortedByDate=false">Popular</a></li>
+                        <li id="recent_tab" v-bind:class="{ 'is-active': sortedByDate }"><a v-on:click="sortedByDate=true">Recent</a></li>
                       </ul>
                     </div>
               
               <div>
                   
-                  <article class="box" v-for="post in sortedPost">
+                  <article class="box" v-for="post in sortedPost" :key="post.url">
                       <div class="media">
-                          <figure class="media-left is-hidden-mobile">
+                          <figure class="media-left is-hidden-mobile is-clipped">
                                   <p class="image is-128x128">
                                       <img :src="post.image">
                                   </p>
@@ -80,7 +80,7 @@
                               <p class="title is-5">{{post.titre}}</p>
                               <p class="heading">By {{post.author}} - {{post.age}} days ago</p>
                               <div class="tags" v-if="post.tags" >
-                                  <a v-for="tag in post.tags" class="tag filter is-rounded is-primary">{{tag}}</a>
+                                  <a v-for="tag in post.tags" :key="tag" class="tag filter is-rounded is-primary" v-on:click="filterTag=tag">{{tag}}</a>
                               </div>
                           </div>
                       </div>
@@ -107,7 +107,8 @@ export default {
       errors: [],
       loading: false,
       sortedByDate : false,
-      filterText : ""
+      filterText : "",
+      filterTag : ""
     };
   },
   created() {
@@ -129,12 +130,11 @@ export default {
           }
       },
     filteredPost() {
-        if (this.filterText) {
-            return this.posts.filter( (post) => post.titre.toLowerCase().indexOf(this.filterText)>-1 )
-        } else {
-            return this.posts
+        const filterPosts = function(post, textFilter, tagFilter) {
+            // return true if it matches
+            return (!textFilter || (post.titre.toLowerCase().indexOf(textFilter)>-1 )) && (!tagFilter || post.tags.includes(tagFilter))
         }
-
+        return this.posts.filter( (post) => filterPosts(post,this.filterText, this.filterTag ) )
     }
   },
   methods: {
