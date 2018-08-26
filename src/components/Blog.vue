@@ -92,6 +92,7 @@
           </div>
       
         </div>
+
     </div>
 </template>
 
@@ -169,7 +170,7 @@ export default {
         .catch(e => {
           this.errors.push(e);
         });
-      this.loading = false;
+      //this.loading = false;
     },
     switchToPopular() {},
     switchToRecent() {}
