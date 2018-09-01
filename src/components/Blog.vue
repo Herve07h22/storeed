@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <div class="is-hidden-mobile">
+                <div>
                     <br><hr>
                     <div class="level">
                         <div class="level-left">
@@ -52,7 +52,7 @@
                     </div>
               
               <div>
-                  
+              <vue-simple-spinner v-if="isLoading" :line-size="12" message="Loading posts"></vue-simple-spinner>    
                   <article class="box" v-for="post in selectedPost" :key="post.url">
                       <div class="media">
                           <figure class="media-left is-hidden-mobile is-clipped">
@@ -65,7 +65,7 @@
                               <p class="title is-5">{{post.titre}}</p>
                               <p class="heading"><span v-if="post.author">By {{post.author}} - </span>{{post.age}} days ago</p>
                               <div class="tags" v-if="post.tags" >
-                                  <a v-for="tag in post.tags" class="tag filter is-rounded is-primary" v-on:click="filterTag=tag">{{tag}}</a>
+                                  <a v-for="tag in post.tags" class="tag filter is-rounded is-primary" v-on:click="filterTag=tag">#{{tag}}</a>
                               </div>
                           </div>
                       </div>
@@ -83,15 +83,18 @@
 
 <script>
 import axios from "axios";
+import VueSimpleSpinner from '@/components/Spinner.vue'
 
 export default {
   props: ["tweet_id"],
+  components : {
+    VueSimpleSpinner
+  },
   data() {
     return {
       posts: [],
       bio: {},
       errors: [],
-      loading: false,
       sortedByDate : false,
       filterText : "",
       filterTag : ""
@@ -120,12 +123,15 @@ export default {
       },
       twitterUrl() {
           return `https://twitter.com/${this.bio.id}?ref_src=twsrc%5Etfw`
+      },
+      isLoading() {
+          return this.posts.length == 0
       }
   },
   methods: {
     fetchData() {
       this.errors = [];
-      this.loading = true;
+      
       // replace `getPost` with your data fetching util / API wrapper
       axios
         .get(
@@ -154,7 +160,6 @@ export default {
         .catch(e => {
           this.errors.push(e);
         });
-      //this.loading = false;
     }
   }
 };

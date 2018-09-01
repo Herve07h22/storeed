@@ -98,7 +98,7 @@
     <h1 class="title has-text-centered">Examples</h1>
   <div class="columns">
     <div class="column is-one-quarter box">
-      <code>is-one-quarter</code>
+      <vue-simple-spinner hidden=true :line-size="12" message="Loading posts"></vue-simple-spinner>
     </div>
     <div class="column is-one-quarter box">
       <code>is-one-quarter</code>
@@ -116,8 +116,13 @@
 </template>
 
 <script>
+import VueSimpleSpinner from '@/components/Spinner.vue'
+
 export default {
   name: 'Home',
+  components : {
+    VueSimpleSpinner
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
