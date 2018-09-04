@@ -43,40 +43,50 @@
           Instantly turn your twitter feed into a personnal blog
           </p>
           <p class="subtitle has-text-centered">
-            For free.
+            Collect and share your favorite posts.
           </p>
           <div class="box">
             <div class="field">
               <label class="label">Twitter id</label>
               <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" type="text" placeholder="@yourId" v-model="twitterId">
+                <input class="input" :class="{ 'is-success': isValidTwitterId, 'is-danger': !isValidTwitterId && twitterId}" type="text" placeholder="@yourId" v-model="twitterId">
                 <span class="icon is-small is-left">
                   <i class="fab fa-twitter"></i>
                 </span>
-                <span class="icon is-small is-right">
-                  <i class="fas fa-check"></i>
+                <span v-if="twitterId" class="icon is-small is-right">
+                  <i v-if="isValidTwitterId" class="fas fa-check"></i>
+                  <i v-else class="fas fa-exclamation-triangle"></i>
                 </span>
               </div>
-              <p class="help is-success">This id is correct</p>
+              <div v-if="twitterId">
+                <p v-if="isValidTwitterId" class="help is-success">This twitter id is correct</p>
+                <p v-else class="help is-danger">The twitter id should look like @something</p>
+              </div>
             </div>
             <div class="field">
               <label class="label">Email</label>
               <div class="control has-icons-left has-icons-right">
-                <input class="input is-danger" type="email" placeholder="name@mydomain.com" v-model="twitterId" >
+                <input class="input" :class="{ 'is-success': isValidMail, 'is-danger': !isValidMail && mail }" type="email" placeholder="name@mydomain.com" v-model="mail" >
                 <span class="icon is-small is-left">
                   <i class="fas fa-envelope"></i>
                 </span>
-                <span class="icon is-small is-right">
-                  <i class="fas fa-exclamation-triangle"></i>
+                <span v-if="mail" class="icon is-small is-right">
+                  <i v-if="isValidMail" class="fas fa-check"></i>
+                  <i v-else class="fas fa-exclamation-triangle"></i>
                 </span>
               </div>
-              <p class="help is-danger">This email is invalid</p>
+              <div v-if="mail">
+                <p v-if="isValidMail" class="help is-success">This email looks good</p>
+                <p v-else class="help is-danger">The mail should look like something@domaine.com</p>
+              </div>
             </div>
           <div class="field">
             <div class="control has-text-centered">
-              <button class="button is-link">Build my blog now !</button>
+              <button v-if="!launched" class="button is-link" @click="buildSite" :disabled="!isValidMail || !isValidTwitterId">Build my blog now !</button>
+              <button v-else class="button is-link is-loading">We are building your blog</button>
             </div>
           </div>
+          <p v-if="message">{{message}}</p>
           </div>
         </div>
         <div class="column is-2 is-hidden-mobile">
@@ -98,7 +108,7 @@
     <h1 class="title has-text-centered">Examples</h1>
   <div class="columns">
     <div class="column is-one-quarter box">
-      <vue-simple-spinner hidden=true :line-size="12" message="Loading posts"></vue-simple-spinner>
+      <code>is-one-quarter</code>
     </div>
     <div class="column is-one-quarter box">
       <code>is-one-quarter</code>
@@ -116,16 +126,54 @@
 </template>
 
 <script>
-import VueSimpleSpinner from '@/components/Spinner.vue'
+import axios from "axios";
 
 export default {
   name: 'Home',
   components : {
-    VueSimpleSpinner
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      twitterId: "",
+      mail : "",
+      launched : false,
+      message : ""
+    }
+  },
+  computed: {
+    isValidMail() {
+      return this.validEmail(this.mail)
+    },
+    isValidTwitterId() {
+      return this.validTwitter(this.twitterId)
+    }
+  }, 
+  methods : {
+    validEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+    validTwitter(twitter) {
+      var re = /^@(\w){1,15}$/ ;
+      return re.test(twitter);
+    },
+    buildSite() {
+      this.message = ""
+      this.launched=true
+      axios
+        .post(`https://yptcbavuv9.execute-api.eu-west-3.amazonaws.com/api/new`, {
+          twitter_id: this.twitterId.slice(1),
+          mail: this.mail
+        })
+        .then(response => {
+          // this.message = response.data;
+          this.message = `It gonna take 2 or 3 minutes. As soon as it is live, we send you an e-mail to ${this.mail}`
+          this.launched=false
+        })
+        .catch(e => {
+          this.message = "Ooh.. Something went wrong. Pease check you twitter id.";
+          this.launched=false;
+        });
     }
   }
 }
