@@ -35,7 +35,7 @@
       </div>
     </nav>
   </div>
-
+  <legals :isVisible="legalsDisplay" @close="legalsDisplay=false"></legals>
   <div class="hero-body">
       <div class="columns">
         <div class="column is-two-fifths">
@@ -105,7 +105,7 @@
 <section>
   <div class="container">
     <h1 class="title">Examples</h1>
-    <div class="columns is-multiline is-mobile">
+    <div class="columns">
       <div class="column is-one-third">
         <sample twitter_id="youyuxi"></sample>
       </div>
@@ -113,15 +113,15 @@
         <sample twitter_id="ThisIsSethsBlog"></sample>
       </div>
       <div class="column is-one-third">
-        <sample twitter_id="francoisz"></sample>
+        <sample twitter_id="snipcart"></sample>
       </div>
     </div>
-    <div class="columns is-multiline is-mobile">
+    <div class="columns">
       <div class="column is-one-third">
-        <sample twitter_id="07h22news"></sample>
+        <sample twitter_id="MaOberlehner"></sample>
       </div>
       <div class="column is-one-third">
-        <sample twitter_id="aureliendebord"></sample>
+        <sample twitter_id="JohannOuaki"></sample>
       </div>
       <div class="column is-one-third">
         <sample twitter_id="francoisz"></sample>
@@ -141,8 +141,9 @@
 
 
 <footer class="footer">
-  <div class="container">
-    Made with love in Cotentin by camilab.co
+  <div class="container has-text-centered">
+    <p>Made with love in Cotentin by camilab.co - <a class="has-text-link" @click="legalsDisplay=true">terms and conditions</a> - copyright 2018 
+    </p>
   </div>
 </footer>
 
@@ -152,18 +153,21 @@
 <script>
 import axios from "axios";
 import Sample from '@/components/Sample.vue'
+import Legals from '@/components/Legals.vue'
 
 export default {
   name: 'Home',
   components : {
-    Sample
+    Sample, 
+    Legals
   },
   data () {
     return {
       twitterId: "",
       mail : "",
       launched : false,
-      message : ""
+      message : "",
+      legalsDisplay : false
     }
   },
   computed: {

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="section">
     <div class="media">
         <div class="media-left">
             <figure class="image is-128x128">
