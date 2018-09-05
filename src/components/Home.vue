@@ -101,36 +101,62 @@
     </div>
   </div>
 </section>
-
+<br>
 <section>
-  
-  
-    <h1 class="title has-text-centered">Examples</h1>
-  <div class="columns">
-    <div class="column is-one-quarter box">
-      <code>is-one-quarter</code>
+  <div class="container">
+    <h1 class="title">Examples</h1>
+    <div class="columns is-multiline is-mobile">
+      <div class="column is-one-third">
+        <sample twitter_id="youyuxi"></sample>
+      </div>
+      <div class="column is-one-third">
+        <sample twitter_id="ThisIsSethsBlog"></sample>
+      </div>
+      <div class="column is-one-third">
+        <sample twitter_id="francoisz"></sample>
+      </div>
     </div>
-    <div class="column is-one-quarter box">
-      <code>is-one-quarter</code>
-    </div>
-    <div class="column is-one-quarter box">
-      <code>is-one-quarter</code>
-    </div>
-    <div class="column is-one-quarter box">
-      <code>is-one-quarter</code>
+    <div class="columns is-multiline is-mobile">
+      <div class="column is-one-third">
+        <sample twitter_id="07h22news"></sample>
+      </div>
+      <div class="column is-one-third">
+        <sample twitter_id="aureliendebord"></sample>
+      </div>
+      <div class="column is-one-third">
+        <sample twitter_id="francoisz"></sample>
+      </div>
     </div>
   </div>
-
 </section>
+<hr>
+<section>
+  <div class="container">
+    <h1 class="title">About me</h1>
+    <div class="content">
+      <p> This a side project still under development</p>
+    </div>
+    </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    Made with love in Cotentin by camilab.co
+  </div>
+</footer>
+
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Sample from '@/components/Sample.vue'
 
 export default {
   name: 'Home',
   components : {
+    Sample
   },
   data () {
     return {
