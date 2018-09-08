@@ -5,7 +5,7 @@
     <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item is-active">
+          <a class="navbar-item">
             Storeed.me
           </a>
           <span class="navbar-burger burger" data-target="navbarMenuHeroB">
@@ -16,11 +16,11 @@
         </div>
         <div id="navbarMenuHeroB" class="navbar-menu">
           <div class="navbar-end">
-            <a class="navbar-item">
+            <a class="navbar-item" href="#examples">
               Examples
             </a>
-            <a class="navbar-item">
-              About me
+            <a class="navbar-item" href="#why">
+              What is storeed.me ?
             </a>
             <span class="navbar-item">
               <a class="button is-info is-inverted">
@@ -103,7 +103,7 @@
 </section>
 <br>
 <section>
-  <div class="container">
+  <div class="container" id="examples">
     <h1 class="title">Examples</h1>
     <div class="columns">
       <div class="column is-one-third">
@@ -121,7 +121,7 @@
         <sample twitter_id="didier_goas"></sample>
       </div>
       <div class="column is-one-third">
-        <sample twitter_id="FullstackDevJS"></sample>
+        <sample twitter_id="MaOberlehner"></sample>
       </div>
       <div class="column is-one-third">
         <sample twitter_id="francoisz"></sample>
@@ -142,10 +142,16 @@
 </section>
 <hr>
 <section>
-  <div class="container">
-    <h1 class="title">About me</h1>
+  <div class="container" id="why">
+    <h1 class="title">What is storeed.me ?</h1>
     <div class="content">
+      <h3>Why ? </h3>
       <p> This a side project still under development</p>
+      <h3>What about "DIY with Netlify" ?</h3>
+      <p>Nuxt generation</p>
+      <h3>What about pricing ?</h3>
+      <p>Keep it up to date</p>
+      <p>Embed in your personnal website</p>
     </div>
     </div>
 </section>
