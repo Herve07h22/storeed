@@ -11,8 +11,8 @@
                             </figure>
                         </div>
                         <div class="media-content">
-                            <h1 class="title is-4">{{bio.id}}</h1>
-                            <p class="subtitle is-6">{{bio.name}}</p>
+                            <h1 class="title is-4">{{bio.name}}</h1>
+                            <p class="subtitle is-6">{{bio.id}}</p>
                             <p>{{bio.description}} </p>
                             <br>
 

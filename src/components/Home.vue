@@ -110,7 +110,7 @@
         <sample twitter_id="youyuxi"></sample>
       </div>
       <div class="column is-one-third">
-        <sample twitter_id="ThisIsSethsBlog"></sample>
+        <sample twitter_id="FullstackDevJS"></sample>
       </div>
       <div class="column is-one-third">
         <sample twitter_id="snipcart"></sample>
@@ -118,13 +118,24 @@
     </div>
     <div class="columns">
       <div class="column is-one-third">
-        <sample twitter_id="MaOberlehner"></sample>
+        <sample twitter_id="didier_goas"></sample>
       </div>
       <div class="column is-one-third">
-        <sample twitter_id="JohannOuaki"></sample>
+        <sample twitter_id="FullstackDevJS"></sample>
       </div>
       <div class="column is-one-third">
         <sample twitter_id="francoisz"></sample>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-one-third">
+        <sample twitter_id="julsimon"></sample>
+      </div>
+      <div class="column is-one-third">
+        <sample twitter_id="ThisIsSethsBlog"></sample>
+      </div>
+      <div class="column is-one-third">
+        <sample twitter_id="aureliendebord"></sample>
       </div>
     </div>
   </div>
