@@ -5,16 +5,17 @@
     <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item">
-            Storeed.me
+          <a class="navbar-item" >
           </a>
-          <span class="navbar-burger burger" data-target="navbarMenuHeroB">
-            <span></span>
-            <span></span>
-            <span></span>
+
+          <span class="navbar-burger" :class="{'is-active':isOpenMenu}" @click="isOpenMenu=!isOpenMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
           </span>
         </div>
-        <div id="navbarMenuHeroB" class="navbar-menu">
+
+        <div class="navbar-menu" :class="{'is-active' :isOpenMenu}">
           <div class="navbar-end">
             <a class="navbar-item" href="#examples">
               Examples
@@ -145,13 +146,24 @@
   <div class="container" id="why">
     <h1 class="title">What is storeed.me ?</h1>
     <div class="content">
-      <h3>Why ? </h3>
-      <p> This a side project still under development</p>
+      <p> This side project was inspired by Francois Zaninotto's post <a href="http://www.redotheweb.com/2014/01/20/why-I-tweet-three-links-a-day.html"> "Why I Tweet Three Links A Day"</a>.
+      Francois explains that twitter is a great way to store and to share interesting links.
+      As a solo entrepreneur, I spend a reasonnable time in a day reading posts. 
+      And the most efficient way to get some reading suggestions is to look at the links curated by someone who share the same points of interest.
+      </p> 
+      <p>With another perspective, I thought it would also make sense to design a personnal blog with something wider than a simple picture of me, 
+      followed by a static list of my skills/projects. Publishing my favourite posts is a way to tell who I am. 
+      So I made this simple tool that gets all the links embedded in you last tweets, then analyze each target post to get 
+      some data : title, author, description, picture.
+      The result is dumped to a json file. I wrote a couple of vue.js components to show the result and implement some features (sort, search).      
+       </p>
       <h3>What about "DIY with Netlify" ?</h3>
-      <p>Nuxt generation</p>
+      <p>The idea is to let you design your personnal blog. So you can instanciate a basic nuxt template on Netlify, and modify it as you want to
+        to do a custom site : your design, your domain, and any other pages. Before that, you will have to get some twitter dev credentials. 
+      </p>
       <h3>What about pricing ?</h3>
-      <p>Keep it up to date</p>
-      <p>Embed in your personnal website</p>
+      <p>Storeed.me is free. I am thinking about a small fee if you want to automaticly run the generation engine each day/week 
+        to keep your list up to date. I'd love to hear from you about suggested features !</p>
     </div>
     </div>
 </section>
@@ -159,7 +171,7 @@
 
 <footer class="footer">
   <div class="container has-text-centered">
-    <p>Made with love in Cotentin by camilab.co - <a class="has-text-link" @click="legalsDisplay=true">terms and conditions</a> - copyright 2018 
+    <p>Made with love in Cotentin by <a href="mailto:contact@camilab.co"> camilab.co </a>- <a class="has-text-link" @click="legalsDisplay=true">terms and conditions</a> - copyright 2018 
     </p>
   </div>
 </footer>
@@ -184,7 +196,8 @@ export default {
       mail : "",
       launched : false,
       message : "",
-      legalsDisplay : false
+      legalsDisplay : false,
+      isOpenMenu : false
     }
   },
   computed: {
