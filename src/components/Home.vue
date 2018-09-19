@@ -153,14 +153,16 @@
       </p> 
       <p>With another perspective, I thought it would also make sense to design a personnal blog with something wider than a simple picture of me, 
       followed by a static list of my skills/projects. Publishing my favourite posts is a way to tell who I am. 
-      So I made this simple tool that gets all the links embedded in you last tweets, then analyze each target post to get 
+      So I made this simple tool that gets all the links embedded in you last tweets, then analyze each post to get 
       some data : title, author, description, picture.
       The result is dumped to a json file. I wrote a couple of vue.js components to show the result and implement some features (sort, search).      
        </p>
       <h3>What about "DIY with Netlify" ?</h3>
-      <p>The idea is to let you design your personnal blog. So you can instanciate a basic nuxt template on Netlify, and modify it as you want to
-        to do a custom site : your design, your domain, and any other pages. Before that, you will have to get some twitter dev credentials. 
+      <p>The idea is to let you design your personnal blog. You can instanciate a basic nuxt template on Netlify, and modify it as you want to
+        do a custom site : your design, your domain, and more additionnal pages. Before that, you will have to get some twitter dev credentials. 
       </p>
+      <p>Up to now, this feature is still under development
+        </p>
       <h3>What about pricing ?</h3>
       <p>Storeed.me is free. I am thinking about a small fee if you want to automaticly run the generation engine each day/week 
         to keep your list up to date. I'd love to hear from you about suggested features !</p>
