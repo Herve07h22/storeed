@@ -227,7 +227,7 @@ export default {
         })
         .then(response => {
           // this.message = response.data;
-          this.message = `It gonna take 2 or 3 minutes. As soon as it is live, we send you an e-mail to ${this.mail}`
+          this.message = `We are building your page. We will send you an e-mail to ${this.mail} as soon as it is done.`
           this.launched=false
         })
         .catch(e => {
